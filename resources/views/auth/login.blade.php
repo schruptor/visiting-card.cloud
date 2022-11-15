@@ -44,5 +44,11 @@
                 </x-jet-button>
             </div>
         </form>
+
+        @if(config('app.env') === 'local')
+            <hr class="m-8"/>
+
+            <x-auth.login-as-developer />
+        @endif
     </x-jet-authentication-card>
 </x-guest-layout>

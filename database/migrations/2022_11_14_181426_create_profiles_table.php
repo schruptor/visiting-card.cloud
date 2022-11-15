@@ -9,10 +9,6 @@ return new class extends Migration {
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('last_user_id')->nullable();
-            $table->boolean('active')->default(1);
-            $table->uuid();
             $table->timestamps();
         });
     }

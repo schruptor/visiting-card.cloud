@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .pill {
+        @apply inline-block my-1 px-4 py-2 font-bold text-xs uppercase rounded-full;
+    }
+
+    .pill-red {
+        @apply pill bg-red-200 text-gray-700 hover:bg-red-300 focus:bg-red-300 active:bg-red-400;
+    }
+
+    .pill-green {
+        @apply pill bg-green-200 text-gray-700 hover:bg-green-300 focus:bg-green-300 active:bg-green-400;
+    }
+
+    .pill-blue {
+        @apply pill bg-blue-200 text-gray-700 hover:bg-blue-300 focus:bg-blue-300 active:bg-blue-400;
+    }
+
+    .pill-eminence {
+        @apply pill bg-eminence-200 text-gray-700 hover:bg-eminence-300 focus:bg-eminence-300 active:bg-eminence-400;
+    }
+
+    .btn {
+        @apply inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest focus:outline-none focus:ring disabled:opacity-25 transition;
+    }
+
+    .btn-eminence {
+        @apply btn bg-eminence-300 text-white hover:bg-eminence-500 active:bg-eminence-300 focus:border-eminence-400 focus:ring-eminence-400;
+    }
+
+    .btn-dark-grey {
+        @apply btn bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-900 focus:border-gray-900 focus:ring-gray-300;
+    }
+
+    .btn-green {
+        @apply btn bg-green-600 text-white hover:bg-green-500 active:bg-green-800 focus:border-gray-900 focus:ring-gray-300;
+    }
+}

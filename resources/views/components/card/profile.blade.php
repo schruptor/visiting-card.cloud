@@ -1,0 +1,1 @@
+@livewire('information', ['profile' => $profile])
