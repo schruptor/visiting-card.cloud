@@ -11,7 +11,7 @@
                         {{ __('Download Profile') }}
                     </x-jet-secondary-button>
                 </div>
-                <div class="grid grid-cols-4 gap-4">
+                <div class="grid grid-cols-1">
                     <div>
                         <x-jet-label for="name" value="{{ __('Name') }}" />
                         <x-jet-input class="mt-1 block w-full" :value="$profile->user->name" disabled/>
