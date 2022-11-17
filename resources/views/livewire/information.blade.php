@@ -29,7 +29,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="3">No products found.</td>
+                <td colspan="3">No Informations found.</td>
             </tr>
         @endforelse
         </tbody>

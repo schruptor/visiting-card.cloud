@@ -10,9 +10,15 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     <x-form :action="route('cards.store')">
-                        <x-form-input name="title" :label="__('Title')" />
+                        <x-form-input name="title" :label="__('card.title')"/>
 
-                        <x-form-select name="type" :options="getCardTypes()" label="Select your interests" />
+                        <x-form-input name="prename" :label="__('profile.prename')" />
+
+                        <x-form-input name="name" :label="__('profile.name')" />
+
+                        <x-form-input name="company" :label="__('profile.company')" />
+
+                        <x-form-select name="type" :options="getCardTypes()" label="Select the CardType" />
 
                         <x-form-submit />
                     </x-form>

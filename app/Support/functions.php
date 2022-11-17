@@ -15,3 +15,19 @@ if (! function_exists('getCardTypes')) {
         return $result;
     }
 }
+
+if (! function_exists('getInformationTypes')) {
+    /**
+     * @throws Exception
+     */
+    function getInformationTypes(): Array
+    {
+        $result = [];
+
+        foreach (config('card.information.type') as $name => $type) {
+            $result[$name] = trans('information.type.'.$name);
+        }
+
+        return $result;
+    }
+}

@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->uuid();
             $table->integer('cardable_id');
             $table->string('cardable_type');
+            $table->foreignId('card_id')->nullable();
             $table->timestamps();
         });
     }

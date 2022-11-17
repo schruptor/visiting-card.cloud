@@ -14,9 +14,9 @@
                 <div class="grid grid-cols-1">
                     <div>
                         <x-jet-label for="name" value="{{ __('Name') }}" />
-                        <x-jet-input class="mt-1 block w-full" :value="$profile->user->name" disabled/>
+                        <x-jet-input class="mt-1 block w-full" :value="$card->user->name" disabled/>
                     </div>
-                    @foreach($profile->information as $singleInformation)
+                    @foreach($card->cardable->information as $singleInformation)
                         <div>
                             <x-jet-label :for="$singleInformation->type" value="{{ __($singleInformation->type) }}" />
                             <x-jet-input class="mt-1 block w-full" :value="$singleInformation->value" disabled/>

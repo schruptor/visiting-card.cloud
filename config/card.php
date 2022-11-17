@@ -8,4 +8,10 @@ return [
         //'redirect' => Profile::class,
         //'file' => [],
     ],
+    'information' => [
+        'type' => [
+            'whatsapp' => 'WhatsApp',
+            'telegram' => 'Telegram',
+        ],
+    ]
 ];

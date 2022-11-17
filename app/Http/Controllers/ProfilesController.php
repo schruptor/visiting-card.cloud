@@ -30,6 +30,13 @@ class ProfilesController extends Controller
 
     public function update(Request $request, Profile $profile)
     {
+        $profile->update([
+            'prename' => $request->get('prename'),
+            'name' => $request->get('name'),
+            'company' => $request->get('company'),
+        ]);
+
+        return redirect()->route('cards.show', ['card' => $profile->card])->banner('Card successfully edited.');
     }
 
     public function destroy(Profile $profile)

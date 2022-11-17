@@ -6,6 +6,7 @@ use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,6 +32,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereUuid($value)
  * @mixin \Eloquent
+ * @property int $card_id
+ * @property int $address_id
+ * @property string|null $color
+ * @property string $prename
+ * @property string $name
+ * @property string $company
+ * @property string|null $note
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Information[] $information
+ * @property-read int|null $information_count
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCardId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCompany($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereNote($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile wherePrename($value)
  */
 class Profile extends Model
 {
@@ -46,5 +64,10 @@ class Profile extends Model
     public function information(): HasMany
     {
         return $this->hasMany(Information::class);
+    }
+
+    public function card(): MorphOne
+    {
+        return $this->morphOne(Card::class, 'cardable');
     }
 }

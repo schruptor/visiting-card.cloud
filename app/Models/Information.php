@@ -27,6 +27,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Information whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Information whereValue($value)
  * @mixin \Eloquent
+ * @property int $order
+ * @method static \Illuminate\Database\Eloquent\Builder|Information ordered()
+ * @method static \Illuminate\Database\Eloquent\Builder|Information whereOrder($value)
  */
 class Information extends Model
 {
