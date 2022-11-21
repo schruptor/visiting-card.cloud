@@ -18,6 +18,9 @@
                     <x-jet-nav-link href="{{ route('cards.create') }}" :active="request()->routeIs('cards.create')">
                         {{ __('Create a Card') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('cards.index') }}" :active="request()->routeIs('cards.index')">
+                        {{ __('Browse all your Cards') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
