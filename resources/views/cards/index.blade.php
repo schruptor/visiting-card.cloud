@@ -34,6 +34,7 @@
                                         {{ $card->cardable_type }}
                                     </td>
                                     <td class="py-4 px-6">
+                                        <a href="{{ route('profile.public.show', ['uuid' => $card->uuid]) }}" class="font-medium text-blue-600 hover:underline">Show Profile</a>
                                         <a href="{{ route('cards.show', ['card' => $card->id]) }}" class="font-medium text-blue-600 hover:underline">Show/Edit</a>
                                     </td>
                                 </tr>
