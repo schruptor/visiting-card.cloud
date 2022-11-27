@@ -1,4 +1,4 @@
-<a href="whatsapp://send?abid={{ $information->value }}">
+<a href="https://wa.me/{{ str_replace(' ', '', str_replace('+49', '0049', $information->value)) }}">
     <div class="flex my-4">
     <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
         @svg($icon)
