@@ -23,29 +23,56 @@ class DownloadController extends Controller
             $vcard->addCompany($card->cardable->company);
         }
 
-        foreach ($card->cardable->information as $information) {
-            if ($information->type === 'companytitle') {
-                $vcard->addJobtitle($information->value);
-            }
 
-            if ($information->type === 'email-private') {
-                $vcard->addEmail($information->value, 'Private');
-            }
-
-            if ($information->type === 'email-business') {
-                $vcard->addEmail($information->value, 'Business');
-            }
-
-            if ($information->type === 'phone-private') {
-                $vcard->addPhoneNumber($information->value, 'Private');
-            }
-
-            if ($information->type === 'phone-business') {
-                $vcard->addPhoneNumber($information->value, 'Business');
-            }
-
-            if ($information->type === 'Birthday') {
-                $vcard->addBirthday(Carbon::parse($information->value)->format('Y-m-d'));
+        foreach ($card->cardable->information->groupBy('value') as $information) {
+            $information = $information->first();
+            switch ($information->type) {
+                case 'companytitle':
+                    $vcard->addJobtitle($information->value);
+                    break;
+                case 'email-private':
+                    $vcard->addEmail($information->value, 'HOME');
+                    break;
+                case 'email-business':
+                    $vcard->addEmail($information->value, 'WORK');
+                    break;
+                case 'phone-private':
+                case 'whatsapp':
+                    $vcard->addPhoneNumber($information->value, 'HOME');
+                    break;
+                case 'phone-business':
+                    $vcard->addPhoneNumber($information->value, 'WORK');
+                    break;
+                case 'birthday':
+                    $vcard->addBirthday(Carbon::parse($information->value)->format('Y-m-d'));
+                    break;
+                case 'facebook':
+                    $vcard->addURL('https://facebook.com/' . $information->value);
+                    break;
+                case 'instagram':
+                    $vcard->addURL('https://instagram.com/' . $information->value);
+                    break;
+                case 'link':
+                    $vcard->addURL('https://' . $information->value);
+                    break;
+                case 'linkedin':
+                    $vcard->addURL('https://de.linkedin.com/in/' . $information->value);
+                    break;
+                case 'spotify':
+                    $vcard->addURL('https://open.spotify.com/user/' . $information->value);
+                    break;
+                case 'telegram':
+                    $vcard->addURL('https://telegram.me/' . $information->value);
+                    break;
+                case 'twitch':
+                    $vcard->addURL('https://twitch.tv/' . $information->value);
+                    break;
+                case 'xing':
+                    $vcard->addURL('https://www.xing.com/profile/' . $information->value);
+                    break;
+                case 'youtube':
+                    $vcard->addURL('https://www.youtube.com/channel/' . $information->value);
+                    break;
             }
         }
 
