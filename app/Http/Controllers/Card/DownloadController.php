@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Card;
 
+use Carbon\Carbon;
 use App\Models\Card;
 use Illuminate\Http\Request;
 use JeroenDesloovere\VCard\VCard;
@@ -23,7 +24,29 @@ class DownloadController extends Controller
         }
 
         foreach ($card->cardable->information as $information) {
-            $vcard->addPhoneNumber($information->value, $information->type);
+            if ($information->type === 'companytitle') {
+                $vcard->addJobtitle($information->value);
+            }
+
+            if ($information->type === 'email-private') {
+                $vcard->addEmail($information->value, 'Private');
+            }
+
+            if ($information->type === 'email-business') {
+                $vcard->addEmail($information->value, 'Business');
+            }
+
+            if ($information->type === 'phone-private') {
+                $vcard->addPhoneNumber($information->value, 'Private');
+            }
+
+            if ($information->type === 'phone-business') {
+                $vcard->addPhoneNumber($information->value, 'Business');
+            }
+
+            if ($information->type === 'Birthday') {
+                $vcard->addBirthday(Carbon::parse($information->value)->format('Y-m-d'));
+            }
         }
 
         return Response::make(

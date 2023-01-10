@@ -25,12 +25,14 @@
                             </span>
                             <input type="text" value="{{ $card->cardable->name }}" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5">
                         </div>
-                        <div class="flex my-4">
-                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
-                                @svg('bi-person')
-                            </span>
-                            <input type="text" value="{{ $card->cardable->company }}" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5">
-                        </div>
+                        @if($card->cardable->company != null)
+                            <div class="flex my-4">
+                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                                    @svg('bi-person')
+                                </span>
+                                <input type="text" value="{{ $card->cardable->company }}" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5">
+                            </div>
+                        @endif
                         @foreach($card->cardable->information as $singleInformation)
                             @switch($singleInformation->type)
                                 @case('whatsapp')
@@ -39,6 +41,66 @@
 
                                 @case('telegram')
                                     <x-information.telegram.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('companytitle')
+                                    <x-information.companytitle.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('birthday')
+                                    <x-information.birthday.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('spotify')
+                                    <x-information.spotify.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('link')
+                                    <x-information.link.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('facebook')
+                                    <x-information.facebook.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('instagram')
+                                    <x-information.instagram.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('linkedin')
+                                    <x-information.linkedin.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('xing')
+                                    <x-information.xing.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('youtube')
+                                    <x-information.youtube.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('twitch')
+                                    <x-information.twitch.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('twitter')
+                                    <x-information.twitter.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('email-business')
+                                    <x-information.email-business.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('phone-business')
+                                    <x-information.phone-business.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('email-private')
+                                    <x-information.email-private.show :information="$singleInformation"/>
+                                    @break
+
+                                @case('phone-private')
+                                    <x-information.phone-private.show :information="$singleInformation"/>
                                     @break
                             @endswitch
                         @endforeach

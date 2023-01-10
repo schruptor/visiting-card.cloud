@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Information\Telegram;
+namespace App\View\Components\Information\EmailPrivate;
 
 use App\Models\Information;
 use Illuminate\View\Component;
@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 
 class Show extends Component
 {
-    public string $icon = 'bi-telegram';
+    public string $icon = 'fas-envelope';
 
     public function __construct(
         public Information $information,
@@ -16,6 +16,6 @@ class Show extends Component
 
     public function render(): View
     {
-        return view('components.information.telegram.show');
+        return view('components.information.email-private.show');
     }
 }
