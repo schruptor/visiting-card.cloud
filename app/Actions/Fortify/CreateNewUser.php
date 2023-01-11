@@ -38,17 +38,8 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
                 $this->createTeam($user);
-                $this->createProfile($user);
             });
         });
-    }
-
-    public function createProfile(User $user)
-    {
-        Profile::create([
-            'user_id' => $user->id,
-            'uuid' => Uuid::uuid4(),
-        ]);
     }
 
     /**
