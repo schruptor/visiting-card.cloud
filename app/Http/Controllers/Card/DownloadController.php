@@ -24,8 +24,35 @@ class DownloadController extends Controller
         }
 
 
-        foreach ($card->cardable->information->groupBy('value') as $information) {
+        foreach($card->cardable->information->filter(function ($value, $key) {
+            if (in_array($value->type, ['phone-private', 'whatsapp', 'phone-business', 'telegram'])) {
+                return true;
+            }
+
+            return false;
+        })->groupBy('value') as $information)  {
             $information = $information->first();
+            switch ($information->type) {
+                case 'phone-private':
+                case 'whatsapp':
+                    $vcard->addPhoneNumber($information->value, 'HOME');
+                    break;
+                case 'phone-business':
+                    $vcard->addPhoneNumber($information->value, 'WORK');
+                    break;
+                case 'telegram':
+                    $vcard->addURL('https://telegram.me/' . $information->value);
+                    break;
+            }
+        }
+
+        foreach ($card->cardable->information->filter(function ($value, $key) {
+            if (! in_array($value->type, ['phone-private', 'whatsapp', 'phone-business', 'telegram'])) {
+                return true;
+            }
+
+            return false;
+        }) as $information) {
             switch ($information->type) {
                 case 'companytitle':
                     $vcard->addJobtitle($information->value);
@@ -35,13 +62,6 @@ class DownloadController extends Controller
                     break;
                 case 'email-business':
                     $vcard->addEmail($information->value, 'WORK');
-                    break;
-                case 'phone-private':
-                case 'whatsapp':
-                    $vcard->addPhoneNumber($information->value, 'HOME');
-                    break;
-                case 'phone-business':
-                    $vcard->addPhoneNumber($information->value, 'WORK');
                     break;
                 case 'birthday':
                     $vcard->addBirthday(Carbon::parse($information->value)->format('Y-m-d'));
@@ -60,9 +80,6 @@ class DownloadController extends Controller
                     break;
                 case 'spotify':
                     $vcard->addURL('https://open.spotify.com/user/' . $information->value);
-                    break;
-                case 'telegram':
-                    $vcard->addURL('https://telegram.me/' . $information->value);
                     break;
                 case 'twitch':
                     $vcard->addURL('https://twitch.tv/' . $information->value);
