@@ -22,7 +22,7 @@ class DownloadController extends Controller
         if ($card->cardable->company) {
             $vcard->addCompany($card->cardable->company);
         }
-        
+
         foreach($card->cardable->information->filter(function ($value, $key) {
             if (in_array($value->type, ['phone-private', 'whatsapp', 'phone-business', 'telegram'])) {
                 return true;
@@ -72,7 +72,7 @@ class DownloadController extends Controller
                     $vcard->addURL('https://instagram.com/' . $information->value);
                     break;
                 case 'link':
-                    $vcard->addURL('https://' . $information->value);
+                    $vcard->addURL($information->value);
                     break;
                 case 'linkedin':
                     $vcard->addURL('https://de.linkedin.com/in/' . $information->value);
@@ -93,7 +93,6 @@ class DownloadController extends Controller
         }
 
         $vcard->addURL(config('app.url') . '/profile/' . $uuid);
-
         $vcard->addNote('You can update this V-Card at the URL above.');
 
         return Response::make(
