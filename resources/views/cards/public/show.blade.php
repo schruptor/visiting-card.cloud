@@ -27,7 +27,7 @@
                                 <input type="text" value="{{ $card->cardable->company }}" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5">
                             </div>
                         @endif
-                        @foreach($card->cardable->information as $singleInformation)
+                        @foreach($card->cardable->information->sortBy(['order', 'asc']) as $singleInformation)
                             @switch($singleInformation->type)
                                 @case('whatsapp')
                                     <x-information.whatsapp.show :information="$singleInformation"/>
